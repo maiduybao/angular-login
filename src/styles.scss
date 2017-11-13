@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap-v4-dev/scss/variables";
+
+.page-error {
+  max-width: 600px;
+  padding: 15px;
+  margin: 0 auto;
+  text-align: center;
+
+  &__danger-text {
+    color: $alert-danger-text;
+  }
+
+  &__warning-text {
+    color: $alert-warning-text;
+  }
+}

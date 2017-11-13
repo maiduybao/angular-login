@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="page-login">
+    <form id="form-login" [formGroup]="credentialForm" (ngSubmit)="loginSubmit($event)">
+      <h2 class="page-login__header">Please sign in</h2>
+      <div *ngIf="loginError" class="alert-danger page-login__alert">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{loginError}}
+      </div>
+      <label for="email" class="sr-only">Email address</label>
+      <input type="email" id="email" [(ngModel)]="credentials.email" class="form-control page-login__form-control"
+             placeholder="Email" required
+             title="Enter your email" formControlName="email"
+             [ngClass]="{'error': credentialForm.controls['email'].errors && !credentialForm.controls['email'].pristine}"/>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="password" [(ngModel)]="credentials.password"
+             class="form-control page-login__form-control"
+             placeholder="Password"
+             title="Enter a password consisting of 6-12 characters with uppercase, lowercase, and number"
+             autoComplete="false"
+             formControlName="password" required
+             [ngClass]="{'error': credentialForm.controls['password'].errors && !credentialForm.controls['password'].pristine}"/>
+      <button type="submit" class="btn-primary btn-lg btn-block"
+              [disabled]="credentialForm.pristine || credentialForm.invalid">Sign in
+      </button>
+    </form>
+    <div class="page-login__register-link">
+      <a routerLink="/signup" class="nav-link page-login__register-link__nav-link">
+        <i class="fa fa-user-plus" aria-hidden="true"></i> Signup
+      </a>
+    </div>
+  </div>
+</div>
