@@ -49,8 +49,19 @@
     border-top-right-radius: 0;
   }
 
-  input.error {
-    border-color: $alert-danger-text;
+  input.is-invalid {
+    border-color: #dc3545;
+  }
+
+  input.is-valid {
+    border-color: #28a745;
+  }
+
+  .invalid-feedback {
+    display: none;
+    margin-top: .25rem;
+    font-size: .875rem;
+    color: #dc3545;
   }
 
 }

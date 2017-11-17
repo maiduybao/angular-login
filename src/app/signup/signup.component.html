@@ -1,56 +1,80 @@
 <div class="container">
+
+
   <div class="page-signup">
+
     <form id="form-signup" [formGroup]="signupForm" (ngSubmit)="registerSubmit($event)">
       <h2 class="page-login__header">Please sign up</h2>
-      <div *ngIf="signupError" class="alert-danger page-login__alert">
+      <div *ngIf="signupError" class="invalid-feedback">
         <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{signupError}}
       </div>
 
-      <label for="firstname">First Name</label>
-      <input type="text" id="firstname" [(ngModel)]="signup.firstName"
-             class="form-control page-login__form-control"
-             placeholder="First Name"
-             formControlName="firstName" required
-             [ngClass]="{'error': signupForm.controls['firstName'].errors && !signupForm.controls['firstName'].pristine}"
-             [formGroup]="signupForm"/>
 
-      <label for="lastname">Last Name</label>
-      <input type="text" id="lastname" [(ngModel)]="signup.lastName"
-             class="form-control page-login__form-control"
-             placeholder="Last Name"
-             formControlName="lastName" required
-             [ngClass]="{'error': signupForm.controls['lastName'].errors && !signupForm.controls['lastName'].pristine}"
-             [formGroup]="signupForm"/>
+      <div class="form-group">
+        <label class="form-control-label" for="firstname">First name*</label>
+        <input type="text" id="firstname" [(ngModel)]="signup.firstName"
+               class="form-control"
+               placeholder="First Name"
+               formControlName="firstName" required
+               [ngClass]="{'is-invalid': signupForm.controls['firstName'].errors && !signupForm.controls['firstName'].pristine,
+               'is-valid': signupForm.controls['firstName'].valid}"
+               [formGroup]="signupForm"/>
+      </div>
 
+      <div class="form-group">
+        <label class="form-control-label" for="lastname">Last name*</label>
+        <input type="text" id="lastname" [(ngModel)]="signup.lastName"
+               class="form-control"
+               placeholder="Last Name"
+               formControlName="lastName" required
+               [ngClass]="{'is-invalid': signupForm.controls['lastName'].errors && !signupForm.controls['lastName'].pristine,
+               'is-valid': signupForm.controls['lastName'].valid}"
+               [formGroup]="signupForm"/>
+      </div>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" [(ngModel)]="signup.email" class="form-control page-login__form-control"
-             placeholder="Email Address" required
-             title="Enter your email" formControlName="email"
-             [ngClass]="{'error': signupForm.controls['email'].errors && !signupForm.controls['email'].pristine}"
-             [formGroup]="signupForm"/>
+      <div class="form-group">
+        <label class="form-control-label" for="email">Email address*</label>
+        <input type="email" id="email" [(ngModel)]="signup.email" class="form-control"
+               placeholder="Email address" required
+               title="Enter your email" formControlName="email"
+               [ngClass]="{'is-invalid': signupForm.controls['email'].errors && !signupForm.controls['email'].pristine,
+               'is-valid': signupForm.controls['email'].valid}"
+               [formGroup]="signupForm"/>
+      </div>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" [(ngModel)]="signup.password"
-             class="form-control page-login__form-control"
-             placeholder="Password"
-             title="Enter a password consisting of 6-12 characters with uppercase, lowercase, and number"
-             autoComplete="false"
-             formControlName="password" required
-             [ngClass]="{'error': signupForm.controls['password'].errors && !signupForm.controls['password'].pristine}"/>
+      <div class="form-group">
+        <label class="form-control-label" for="password">Password*</label>
+        <input type="password" id="password" [(ngModel)]="signup.password"
+               class="form-control"
+               placeholder="Password"
+               title="Password must be 6-12 characters long with uppercase, lowercase, and number"
+               autoComplete="false"
+               formControlName="password" required
+               [ngClass]="{'is-invalid': signupForm.controls['password'].errors && !signupForm.controls['password'].pristine,
+               'is-valid': signupForm.controls['password'].valid}"/>
+      </div>
 
-      <label for="password">Confirm Password</label>
-      <input type="password" id="confirmpassword" [(ngModel)]="signup.confirmPassword"
-             class="form-control page-login__form-control"
-             placeholder="Confirm Password"
-             formControlName="confirmPassword" required
-             [ngClass]="{'error': signupForm.controls['confirmPassword'].errors && !signupForm.controls['confirmPassword'].pristine}"
-             [formGroup]="signupForm"/>
+      <div class="form-group">
+        <label class="form-control-label" for="password">Confirm Password*</label>
+        <input type="password" id="confirmpassword" [(ngModel)]="signup.confirmPassword"
+               class="form-control"
+               placeholder="Confirm password"
+               formControlName="confirmPassword" required
+               [ngClass]="{'is-invalid': signupForm.controls['confirmPassword'].errors &&
+               !signupForm.controls['confirmPassword'].pristine,
+               'is-valid': signupForm.controls['confirmPassword'].valid}"
+               [formGroup]="signupForm"/>
+        <div class="invalid-feedback" *ngIf="!passwordMatched">
+          Confirm password is not match
+        </div>
+      </div>
 
-
-      <button type="submit" class="btn-primary btn-lg btn-block"
-              [disabled]="signupForm.pristine || signupForm.invalid">Register
+      <button type="submit" class="btn-lg btn-primary btn-block"
+              [disabled]="signupForm.pristine || signupForm.invalid">Register Now
       </button>
     </form>
+    <div class="member-section">
+      Already a member? <a routerLink="/login" class="btn-link">Login</a>
+    </div>
   </div>
 </div>

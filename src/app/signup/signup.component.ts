@@ -21,6 +21,7 @@ export class SignupComponent implements OnInit {
   };
   signupForm: FormGroup;
   signupError: string;
+  passwordMatched = true;
 
   constructor(private router: Router, private userService: UserService) {
   }
@@ -50,29 +51,33 @@ export class SignupComponent implements OnInit {
         Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$'),
         Validators.minLength(6),
       ]),
-    }, (g: FormGroup) => {
-      return g.get('password').value === g.get('confirmPassword').value
-        ? null : {'mismatch': true};
     });
+  }
+
+  private isPasswordMatch(password: string, confirmpassword: string): boolean {
+    return password === confirmpassword;
   }
 
   registerSubmit(event) {
     event.preventDefault();
-    this.userService.register(this.signup)
-      .then((result) => {
-        logger.log('Register Result', JSON.stringify(result));
-        if (result.success) {
-          this.signupError = null;
-          logger.log('Register Success');
-          this.router.navigateByUrl('/login');
-        } else {
-          this.signupError = result.message;
-          logger.log('Register Failed');
-        }
-      })
-      .catch((error) => {
-        logger.log('Register Failed', JSON.stringify(error));
-      });
+    this.passwordMatched = this.isPasswordMatch(this.signup.password, this.signup.confirmPassword);
+    if (this.passwordMatched) {
+      this.userService.register(this.signup)
+        .then((result) => {
+          logger.log('Register Result', JSON.stringify(result));
+          if (result.success) {
+            this.signupError = null;
+            logger.log('Register Success');
+            this.router.navigateByUrl('/login');
+          } else {
+            this.signupError = result.message;
+            logger.log('Register Failed');
+          }
+        })
+        .catch((error) => {
+          logger.log('Register Failed', JSON.stringify(error));
+        });
+    }
   }
 
 }
