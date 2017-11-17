@@ -1,5 +1,5 @@
-import { NgModule }              from '@angular/core';
-import { RouterModule, Routes }  from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';

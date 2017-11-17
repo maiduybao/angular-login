@@ -1,0 +1,35 @@
+@import "~bootstrap-v4-dev/scss/variables";
+
+.page-signup {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+
+  &__form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+
+    &:focus {
+      z-index: 2;
+    }
+  }
+
+  &__header {
+    margin-bottom: 10px;
+  }
+
+  &__alert {
+    margin-bottom: 10px;
+    font-size: 14px;
+    background: none !important;
+  }
+
+  input.error {
+    border-color: $alert-danger-text;
+  }
+
+}

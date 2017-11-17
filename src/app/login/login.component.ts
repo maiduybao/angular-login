@@ -9,7 +9,7 @@ const logger = console;
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class LoginComponent implements OnInit {
   credentials = {
@@ -43,9 +43,9 @@ export class LoginComponent implements OnInit {
         if (result.success) {
           this.credentials.password = null;
           this.loginError = null;
-          return this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/dashboard');
         } else {
-          this.loginError = result.error;
+          this.loginError = result.message;
         }
       });
   }

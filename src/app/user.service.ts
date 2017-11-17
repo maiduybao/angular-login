@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import JwtDecode from 'jwt-decode';
 import intersection from 'lodash/intersection';
-import {LOGIN_API_URL, ACCESS_TOKEN} from './app.constants';
+import {LOGIN_API_URL, ACCESS_TOKEN, USER_REGISTER_API_URL} from './app.constants';
 
 const logger = console;
 
 @Injectable()
 export class UserService {
 
-  constructor() { }
+  constructor() {
+  }
 
-  public login(credentials: {email: string, password: string}) {
+  public login(credentials: { email: string, password: string }): any {
     return fetch(LOGIN_API_URL, {
       method: 'post',
       headers: new Headers({
@@ -21,16 +22,16 @@ export class UserService {
     })
       .then((res) => res.json())
       .then((data) => {
-        const {error, accessToken, tokenType} = data;
-        if (error) {
-          return {success: false, error: error.message};
+        const {status, accessToken, tokenType} = data;
+        if (status) {
+          return {success: false, message: data.message};
         }
         localStorage.setItem(ACCESS_TOKEN, `${tokenType} ${accessToken}` || '');
-        return {success: true, error: null};
+        return {success: true};
       })
       .catch((ex) => {
         logger.error(ex);
-        return {success: false, error: 'Could not connect to the server'};
+        return {success: false, message: 'Could not connect to the server'};
       });
   }
 
@@ -91,4 +92,29 @@ export class UserService {
     return null;
   }
 
+  public register(registerInfo): any {
+    return fetch(USER_REGISTER_API_URL, {
+      method: 'post',
+      headers: new Headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(registerInfo)
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        logger.log('register user', data);
+        const {status} = data;
+        if (status) {
+          return {success: false, message: data.message};
+        }
+        return {success: true};
+      })
+      .catch((ex) => {
+        logger.error(ex);
+        return {success: false, message: 'Could not connect to the server'};
+      });
+  }
+
 }
+
