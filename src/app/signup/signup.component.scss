@@ -9,6 +9,14 @@
     margin-bottom: 10px;
   }
 
+  &__alert-notice {
+    display: block;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    font-size: 1.0rem;
+    color: #dc3545;
+  }
+
   input.is-invalid {
      border-color: #dc3545;
    }
