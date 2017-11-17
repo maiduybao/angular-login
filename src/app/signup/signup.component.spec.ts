@@ -10,7 +10,9 @@ class RouterStub {
 }
 
 class UserServiceStub {
-  register(signup) { return true;}
+  register(signup) {
+    return true;
+  }
 }
 
 describe('SignupComponent', () => {
@@ -19,6 +21,7 @@ describe('SignupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, FormsModule],
       declarations: [ SignupComponent ],
       providers: [
         { provide: UserService, useClass: UserServiceStub },
