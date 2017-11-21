@@ -20,9 +20,6 @@
              formControlName="password" required
              [ngClass]="{'is-invalid': credentialForm.controls['password'].errors && !credentialForm.controls['password'].pristine,
              'is-valid': credentialForm.controls['password'].valid}"/>
-      <small id="passwordHelpBlock" class="form-text text-muted">
-        Your password must be 6-12 characters long, contain uppercase, lowercase letters and numbers, and must not contain spaces, special characters, or emoji.
-      </small>
       <div>&nbsp;</div>
       <button type="submit" class="btn-primary btn-lg btn-block"
               [disabled]="credentialForm.pristine || credentialForm.invalid">Sign in
