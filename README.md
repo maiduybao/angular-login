@@ -25,3 +25,28 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Run docker
+
+Install docker (https://docs.docker.com/engine/installation/)
+
+Run the following command to build your docker image
+$ docker build -t <your username>/AngularLogin
+
+Check for your image 
+$ docker images
+
+Run your image
+$ docker run -p 49160:4000 -d <your username>/AngularLogin
+
+Get container ID
+$ docker ps
+
+Print app output
+$ docker logs <container id>
+
+Example
+Running on http://localhost:4000
+
+Enter the container
+$ docker exec -it <container id> /bin/bash
