@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~bootstrap-v4-dev/scss/variables";
+@import "./css/toolkit-light.scss";
+@import "./css/variables.scss";
+
 
 .page-error {
   max-width: 600px;
@@ -9,10 +11,10 @@
   text-align: center;
 
   &__danger-text {
-    color: $alert-danger-text;
+    color: theme-color('danger');
   }
 
   &__warning-text {
-    color: $alert-warning-text;
+    color: theme-color('warning');
   }
 }
