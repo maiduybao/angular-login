@@ -23,15 +23,15 @@
     margin-right: -10px;
     margin-bottom: 2px;
     margin-left: 5px;
-    border-right: $tooltip-arrow-width solid transparent;
-    border-left:  $tooltip-arrow-width solid transparent;
+    border-right: 5px solid transparent;
+    border-left:  5px solid transparent;
   }
 }
 
 .headerSortUp:after {
-  border-top: $tooltip-arrow-width solid;
+  border-top: 5px solid;
 }
 
 .headerSortDown:after {
-  border-bottom: $tooltip-arrow-width solid;
+  border-bottom: 5px solid;
 }
