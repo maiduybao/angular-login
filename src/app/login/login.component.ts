@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {UserService} from '../user.service';
 
 const logger = console;
+const LOGIN_PASSWORD_PATTERN = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl(this.credentials.password, [
         Validators.required,
-        Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$'),
+        Validators.pattern(LOGIN_PASSWORD_PATTERN),
         Validators.minLength(6)
       ])
     });
